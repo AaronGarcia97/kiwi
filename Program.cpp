@@ -10,14 +10,17 @@ Program::Program() {
 }
 
 void Program::start() {
-    cout << "Started program." << endl;
+    cout << "[+] Starting program." << endl;
     input_.pedir_datos();
+    processor_context_.set_processor_strategy(new ShiftStrategy());
 }
 
 void Program::process() {
-    cout << "Processed program." << endl;
+    cout << "[+] Processing program." << endl;
+    output_ = processor_context_.processor_strategy()->process(input_);
+    output_.display_datos();
 }
 
 void Program::display() {
-    cout << "Displayed program." << endl;
+    cout << "[+] Displaying program." << endl;
 }

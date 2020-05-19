@@ -10,7 +10,7 @@ Line::Line(string string_line) {
 
 // use this cosntructor, to ensure private fields are filled.
 Line::Line(string string_line, vector<string> object) {
-    cout << "Constructing line." << endl;
+    cout << "Constructing2 line." << endl;
     original_string_ = string_line;
     object_ = object;
 }

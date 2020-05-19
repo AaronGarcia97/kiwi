@@ -17,6 +17,7 @@ public:
     vector<Line> lines() {return lines_;}
     void set_lines(vector<Line> lines) {lines_ = lines;}
     void add_line(Line);
+    vector<vector <string> > vector_string_lines();
     // each child may have custom impl
     void display_datos();
 };
@@ -30,6 +31,7 @@ public:
 class Output : public IO {
 public:
     Output();
+    Output(vector<Line>);
     vector<Line> alter_lines();
 };
 

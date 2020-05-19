@@ -15,6 +15,14 @@ void IO::display_datos() {
         line.display();
 }
 
+vector<vector <string> > IO::vector_string_lines() {
+    vector<vector <string> > v;
+    for(auto& line : lines_){
+        v.push_back(line.object());
+    }
+    return v;
+}
+
 // INPUT methods
 Input::Input() {
     cout << "Input constructor." << endl;
@@ -40,14 +48,19 @@ void Input::pedir_datos() {
     display_datos();
 }
 
+Output::Output() {
+    cout << "Output constructor." << endl;
+}
+
+Output::Output(vector<Line> lines) {
+    cout << "Output receiving vector<Line> constructor." << endl;
+    lines_ = lines;
+}
+
 // TODO: figure out if we should just modify private variable and return void instead.
 vector<Line> Output::alter_lines() {
     cout << "Sorteando datos del output." << endl;
     vector<Line> v;
     v.push_back(Line("santi"));
     return v;
-}
-
-Output::Output() {
-    cout << "Output constructor." << endl;
 }
