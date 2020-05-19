@@ -2,17 +2,45 @@
 
 using namespace std;
 
-Line::Line(string) {
+// deprecated
+Line::Line(string string_line) {
     cout << "Constructing line." << endl;
+    original_string_ = string_line;
 }
 
-vector<string> Line::convert(string) {
+// use this cosntructor, to ensure private fields are filled.
+Line::Line(string string_line, vector<string> object) {
+    cout << "Constructing line." << endl;
+    original_string_ = string_line;
+    object_ = object;
+}
+
+// split implementation by Evan Teran, see:
+// https://stackoverflow.com/questions/236129/how-do-i-iterate-over-the-words-of-a-string 
+template <typename Out>
+void split(const string &s, char delim, Out result) {
+    istringstream iss(s);
+    string item;
+    while (getline(iss, item, delim)) {
+        *result++ = item;
+    }
+}
+
+vector<string> Line::convert(string string_line) {
     cout << "Converting line." << endl;
     vector<string> v;
-    v.push_back("santiagoEsGay");
+    char delim = ' ';
+    split(string_line, delim, back_inserter(v));
     return v;
 }
 
 void Line::display() {
     cout << "Line displaying stuff." << endl;
+    // TODO: impl different displays, original_string or vector display
+    cout << "string -----> " << original_string_ << endl;
+    cout << "vector -----> ";
+    cout << '{';
+    for (auto& word : object_)
+        cout << word << ',';
+    cout << '}' << endl;
 }

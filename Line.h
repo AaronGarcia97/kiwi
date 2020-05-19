@@ -4,6 +4,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <sstream>
 
 using namespace std;
 
@@ -14,7 +15,8 @@ private:
 
 public:
     Line(string);
-    vector<string> convert(string);
+    Line(string, vector<string>);
+    static vector<string> convert(string);
     void display();
 
     // getters & setters
