@@ -48,6 +48,8 @@ void Input::pedir_datos() {
     display_datos();
 }
 
+
+
 Output::Output() {
     cout << "Output constructor." << endl;
 }
@@ -57,10 +59,30 @@ Output::Output(vector<Line> lines) {
     lines_ = lines;
 }
 
+
+// lexicogrphical comparator
+//(Hotfix): Instead of adding const to each parameter,const at the end tells the
+// the compiler explicitly that this funtion doesn't modify any member.
+struct less_than_line {
+    inline bool operator() (Line& line1, Line& line2) const {
+            return 
+                lexicographical_compare(
+                    line1.original_string().begin(),
+                    line1.original_string().end(),
+                    line2.original_string().begin(),
+                    line2.original_string().end());
+    }
+};
+
 // TODO: figure out if we should just modify private variable and return void instead.
-vector<Line> Output::alter_lines() {
+void Output::alter_lines() {
     cout << "Sorteando datos del output." << endl;
-    vector<Line> v;
-    v.push_back(Line("santi"));
-    return v;
+    modified_lines_ = lines_;
+    sort(modified_lines_.begin(), modified_lines_.end(), less_than_line());
+}
+
+// Displays modified lines
+void Output::display_datos() {
+    for(auto& line : modified_lines_)
+        line.display();    
 }

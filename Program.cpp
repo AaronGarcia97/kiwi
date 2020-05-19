@@ -23,4 +23,6 @@ void Program::process() {
 
 void Program::display() {
     cout << "[+] Displaying program." << endl;
+    output_.alter_lines();
+    output_.display_datos();
 }

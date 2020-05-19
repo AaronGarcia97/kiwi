@@ -2,6 +2,7 @@
 #define IO_H
 
 #include <iostream>
+#include <algorithm>
 #include <vector>
 #include <string>
 
@@ -9,6 +10,7 @@
 
 using namespace std;
 
+// TODO: clean lines, make them all lower case!
 class IO {
 protected:
     vector<Line> lines_;
@@ -29,10 +31,14 @@ public:
 };
 
 class Output : public IO {
+private:
+    vector<Line> modified_lines_;
 public:
     Output();
     Output(vector<Line>);
-    vector<Line> alter_lines();
+    void alter_lines();
+    vector<Line> modified_lines() {return modified_lines_;}
+    void display_datos();
 };
 
 #endif // IO_H
