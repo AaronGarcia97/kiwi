@@ -16,7 +16,8 @@ private:
 public:
     Line(string);
     Line(string, vector<string>);
-    static vector<string> convert(string);
+    static vector<string> convert_to_vector(string);
+    static string convert_to_string(vector<string>, string);
     void display();
 
     // getters & setters

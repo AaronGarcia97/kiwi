@@ -35,7 +35,7 @@ vector<Line> leer_datos() {
     while (getline(cin, string_line)) {
         // remove " and .
         string trimmed_line = string_line.substr(1,string_line.length()-3);
-        Line line = Line(trimmed_line, Line::convert(trimmed_line));
+        Line line = Line(trimmed_line, Line::convert_to_vector(trimmed_line));
         v.push_back(line);
     }
     return v;

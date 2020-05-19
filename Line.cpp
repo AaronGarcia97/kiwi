@@ -26,12 +26,24 @@ void split(const string &s, char delim, Out result) {
     }
 }
 
-vector<string> Line::convert(string string_line) {
-    cout << "Converting line." << endl;
+vector<string> Line::convert_to_vector(string string_line) {
+    cout << "Converting string to vector." << endl;
     vector<string> v;
     char delim = ' ';
     split(string_line, delim, back_inserter(v));
     return v;
+}
+
+string Line::convert_to_string(vector<string> v, string delim) {
+    cout << "Converting vector to string" << endl;
+    string output = "";
+    for(auto& word : v) {
+        output += word;
+        output += delim;
+    }
+    for(int i=0; i< delim.length(); i++)
+        output.pop_back();
+    return output;
 }
 
 void Line::display() {

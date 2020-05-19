@@ -92,8 +92,12 @@ Output ShiftStrategy::process(IO input) {
 
     vector<Line> lines_output;
     // convert it to vector of lines
-    for(auto& vector_string_line : vector_strings_output)
-        lines_output.push_back(Line("", vector_string_line));
+    for(auto& vector_string_line : vector_strings_output) {
+        Line line = Line(
+            Line::convert_to_string(vector_string_line, " "),
+            vector_string_line);
+        lines_output.push_back(line);
+    }
 
     // TODO: return what???
     return Output(lines_output);
