@@ -8,12 +8,12 @@ One liner to compile and run it with test input:
 The program assumes that input will be stings enclosed by `"`   
 each separated by `\n` until `EOF`.   
 
-*Example of expected input*:   
+**Example of expected input**:   
 ```
 "Clouds are white."
 "Pittsburgh is beatiful."
 ```
-*Expected output*:
+**Expected output**:
 ```
 ---------EXPECTED OUTPUT---------
 are white clouds
