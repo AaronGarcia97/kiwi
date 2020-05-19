@@ -18,7 +18,6 @@ void Program::start() {
 void Program::process() {
     cout << "[+] Processing program." << endl;
     output_ = processor_context_.processor_strategy()->process(input_);
-    output_.display_datos();
 }
 
 void Program::display() {

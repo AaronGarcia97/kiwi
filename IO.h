@@ -38,6 +38,7 @@ public:
     Output(vector<Line>);
     void alter_lines();
     vector<Line> modified_lines() {return modified_lines_;}
+    void display_datos_debug();
     void display_datos();
 };
 

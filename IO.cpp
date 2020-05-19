@@ -28,13 +28,19 @@ Input::Input() {
     cout << "Input constructor." << endl;
 }
 
+string clean_input_string(string str) {
+    // remove " and . and make it lower case.
+    string trimmed_str = str.substr(1, str.length()-3);
+    transform(trimmed_str.begin(), trimmed_str.end(), trimmed_str.begin(), ::tolower);
+    return trimmed_str;
+}
+
 // reads data from file
 vector<Line> leer_datos() {
     string string_line;
     vector<Line> v;
     while (getline(cin, string_line)) {
-        // remove " and .
-        string trimmed_line = string_line.substr(1,string_line.length()-3);
+        string trimmed_line = clean_input_string(string_line);
         Line line = Line(trimmed_line, Line::convert_to_vector(trimmed_line));
         v.push_back(line);
     }
@@ -48,8 +54,6 @@ void Input::pedir_datos() {
     display_datos();
 }
 
-
-
 Output::Output() {
     cout << "Output constructor." << endl;
 }
@@ -58,7 +62,6 @@ Output::Output(vector<Line> lines) {
     cout << "Output receiving vector<Line> constructor." << endl;
     lines_ = lines;
 }
-
 
 // lexicogrphical comparator
 //(Hotfix): Instead of adding const to each parameter,const at the end tells the
@@ -82,7 +85,14 @@ void Output::alter_lines() {
 }
 
 // Displays modified lines
-void Output::display_datos() {
+void Output::display_datos_debug() {
     for(auto& line : modified_lines_)
         line.display();    
+}
+
+void Output::display_datos() {
+    cout << "---------EXPECTED OUTPUT---------" << endl;
+    for(auto& line : modified_lines_)
+        cout << line.original_string() << endl;
+    cout << "-----------END OUTPUT------------" << endl;
 }
