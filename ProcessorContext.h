@@ -25,6 +25,13 @@ public:
     ShiftStrategy();
 };
 
+// TODO: Investigate this.
+// We need to use Polymorphism so that we can set a new strategy at any
+// desired moment. Right now we only have a ShiftStrategy, so we have to
+// have a ProcessorStrategy instead, which can reeive any of its' children.
+// (e.g: RightShitStrategy, LeftShiftStrategy, NShitfsStrategy, etc). This
+// stats maybe should inherit from ProcessorStrategy, and ProcessorStrategy
+// maybe has to stop being an abstract class in order for this to work?.
 class ProcessorContext {
 private:
     ShiftStrategy processor_strategy_;
