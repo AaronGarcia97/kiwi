@@ -36,6 +36,8 @@ public:
     Input();
     void pedir_datos();
     void filtrar_stop_words();
+    void borrar_lineas();
+    void display_numbered_lines();
 };
 
 class Output : public IO {

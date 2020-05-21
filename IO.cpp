@@ -78,6 +78,29 @@ bool leer_ascendencia() {
     return tolower(c[0]) == 'y';
 }
 
+// pregunta que lineas borrar
+void Input::borrar_lineas() {
+    string lineas_a_borrar;
+    cout << "Lineas a borrar seaparadas con commas (e.g. 1,2,3): ";
+    cin >> lineas_a_borrar;
+
+    vector<string> v_lineas_a_borrar;
+    unordered_set<int> s_lineas_a_borrar;
+    vector<Line> new_lines;
+
+    Line::split(lineas_a_borrar, ',', back_inserter(v_lineas_a_borrar));
+    for(auto& num_string : v_lineas_a_borrar)
+        s_lineas_a_borrar.insert(stoi(num_string));
+
+    for(int i = 0; i < lines_.size(); i++) {
+        if(s_lineas_a_borrar.find(i+1) == s_lineas_a_borrar.end()) {
+            new_lines.push_back(lines_[i]);
+        }
+    }
+
+    lines_ = new_lines;
+}
+
 void Input::filtrar_stop_words(){
     cerr << "Filtrando palabras con stops." << endl;
     vector <Line> new_lines;
@@ -96,12 +119,21 @@ void Input::pedir_datos() {
     cerr << "Pidiendo datos a usuario." << endl;
     lines_ = leer_lineas();
     cerr << "Lineas leidas:" << endl;
-    display_datos();
+    display_numbered_lines();
+    borrar_lineas();
+    display_numbered_lines(); // new lines after deleting
     leer_stops(stop_words_);
     is_ascendente_ = leer_ascendencia();
     filtrar_stop_words();
     cerr << "Lineas filtradas:" << endl;
     display_datos();
+}
+
+void Input::display_numbered_lines() {
+    int i = 1;
+    for(auto& line : lines_) {
+        cout << to_string(i++) << " " << line.original_string() << endl;
+    }
 }
 
 Output::Output() {

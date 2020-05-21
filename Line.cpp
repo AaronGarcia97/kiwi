@@ -18,7 +18,7 @@ Line::Line(string string_line, vector<string> object) {
 // split implementation by Evan Teran, see:
 // https://stackoverflow.com/questions/236129/how-do-i-iterate-over-the-words-of-a-string 
 template <typename Out>
-void split(const string &s, char delim, Out result) {
+void Line::split(const string &s, char delim, Out result) {
     istringstream iss(s);
     string item;
     while (getline(iss, item, delim)) {
@@ -30,7 +30,7 @@ vector<string> Line::convert_to_vector(string string_line) {
     cerr << "Converting string to vector." << endl;
     vector<string> v;
     char delim = ' ';
-    split(string_line, delim, back_inserter(v));
+    Line::split(string_line, delim, back_inserter(v));
     return v;
 }
 

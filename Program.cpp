@@ -12,6 +12,7 @@ Program::Program() {
 void Program::start() {
     cerr << "[+] Starting program." << endl;
     input_.pedir_datos();
+    input_.display_datos();
     processor_context_.set_processor_strategy(new ShiftStrategy());
 }
 

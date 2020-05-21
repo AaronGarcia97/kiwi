@@ -18,6 +18,8 @@ public:
     Line(string, vector<string>);
     static vector<string> convert_to_vector(string);
     static string convert_to_string(vector<string>, string);
+    template <typename Out>
+    static void split(const string&, char, Out);
     void display();
 
     // getters & setters
