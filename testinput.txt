@@ -1,2 +1,3 @@
-"Clouds are white."
-"Pittsburgh is beatiful."
+KWIC2_input1.txt
+KWIC2_stop1.txt
+n

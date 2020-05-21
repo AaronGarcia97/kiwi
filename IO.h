@@ -5,6 +5,8 @@
 #include <algorithm>
 #include <vector>
 #include <string>
+#include <fstream>
+#include <unordered_set>
 
 #include "Line.h"
 
@@ -14,9 +16,12 @@ using namespace std;
 class IO {
 protected:
     vector<Line> lines_;
+    bool is_ascendente_;
 public:
     IO();
     vector<Line> lines() {return lines_;}
+    bool is_ascendente() {return is_ascendente_;}
+    void set_is_ascendente(bool is_ascendente) {is_ascendente_ = is_ascendente;}
     void set_lines(vector<Line> lines) {lines_ = lines;}
     void add_line(Line);
     vector<vector <string> > vector_string_lines();
@@ -25,9 +30,12 @@ public:
 };
 
 class Input : public IO {
+private:
+    unordered_set<string> stop_words_;
 public:
     Input();
     void pedir_datos();
+    void filtrar_stop_words();
 };
 
 class Output : public IO {
@@ -38,7 +46,7 @@ public:
     Output(vector<Line>);
     void alter_lines();
     vector<Line> modified_lines() {return modified_lines_;}
-    void display_datos_debug();
+    void display_datos_debug(vector<Line>);
     void display_datos();
 };
 

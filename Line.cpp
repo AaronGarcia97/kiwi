@@ -50,9 +50,9 @@ void Line::display() {
     cout << "Line displaying stuff." << endl;
     // TODO: impl different displays, original_string or vector display
     cout << "string -----> " << original_string_ << endl;
-    cout << "vector -----> ";
-    cout << '{';
-    for (auto& word : object_)
-        cout << word << ',';
+    cout << "vector -----> {" << flush;
+    for (auto& word : object_) {
+        cout << word << ',' << flush;
+    }
     cout << '}' << endl;
 }

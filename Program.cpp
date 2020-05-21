@@ -22,6 +22,8 @@ void Program::process() {
 
 void Program::display() {
     cout << "[+] Displaying program." << endl;
+    output_.set_is_ascendente(input_.is_ascendente());
     output_.alter_lines();
+    output_.display_datos_debug(output_.lines());
     output_.display_datos();
 }
