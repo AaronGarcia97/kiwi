@@ -6,7 +6,6 @@ the
 C
 A
 H
-M
 R
 C
 is

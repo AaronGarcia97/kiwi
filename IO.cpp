@@ -3,7 +3,7 @@
 using namespace std;
 
 IO::IO() {
-    cout << "IO constructor." << endl;
+    cerr << "IO constructor." << endl;
     is_ascendente_ = true;
 }
 
@@ -26,7 +26,7 @@ vector<vector <string> > IO::vector_string_lines() {
 
 // INPUT methods
 Input::Input() {
-    cout << "Input constructor." << endl;
+    cerr << "Input constructor." << endl;
 }
 
 string clean_input_string(string str) {
@@ -65,9 +65,9 @@ void leer_stops(unordered_set<string>& set) {
     while (infile >> stop) set.insert(stop);
     
     // display stops
-    // cout << "stops: " << endl;
+    // cerr << "stops: " << endl;
     // for( auto& stop : set)
-    //    cout << stop << endl;
+    //    cerr << stop << endl;
 }
 
 // le si es ascendiente o no
@@ -79,7 +79,7 @@ bool leer_ascendencia() {
 }
 
 void Input::filtrar_stop_words(){
-    cout << "Filtrando palabras con stops." << endl;
+    cerr << "Filtrando palabras con stops." << endl;
     vector <Line> new_lines;
     for(auto& line : lines_) {
     vector<string> string_line; 
@@ -93,23 +93,23 @@ void Input::filtrar_stop_words(){
 }
 
 void Input::pedir_datos() {
-    cout << "Pidiendo datos a usuario." << endl;
+    cerr << "Pidiendo datos a usuario." << endl;
     lines_ = leer_lineas();
-    cout << "Lineas leidas:" << endl;
+    cerr << "Lineas leidas:" << endl;
     display_datos();
     leer_stops(stop_words_);
     is_ascendente_ = leer_ascendencia();
     filtrar_stop_words();
-    cout << "Lineas filtradas:" << endl;
+    cerr << "Lineas filtradas:" << endl;
     display_datos();
 }
 
 Output::Output() {
-    cout << "Output constructor." << endl;
+    cerr << "Output constructor." << endl;
 }
 
 Output::Output(vector<Line> lines) {
-    cout << "Output receiving vector<Line> constructor." << endl;
+    cerr << "Output receiving vector<Line> constructor." << endl;
     lines_ = lines;
 }
 
@@ -129,13 +129,13 @@ struct less_than_line {
 
 // reverse vector eceived in-place
 void reverse_vector(vector<Line>& lines) {
-    cout << "Reverseando datos." << endl;
+    cerr << "Reverseando datos." << endl;
     reverse(lines.begin(), lines.end());
 }
 
 // TODO: figure out if we should just modify private variable and return void instead.
 void Output::alter_lines() {
-    cout << "Sorteando datos del output." << endl;
+    cerr << "Sorteando datos del output." << endl;
     modified_lines_ = lines_;
     sort(modified_lines_.begin(), modified_lines_.end(), less_than_line());
     if(!is_ascendente()) reverse_vector(modified_lines_);

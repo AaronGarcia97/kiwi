@@ -6,38 +6,38 @@ const vector<const string>
     ProcessorContext::available_strategies = {"SHIFT"};
 
 ProcessorStrategyInterface::ProcessorStrategyInterface() {
-    cout << "ProcessorStrategyInterface constructor." << endl;
+    cerr << "ProcessorStrategyInterface constructor." << endl;
 }
  
 ProcessorStrategy::ProcessorStrategy() {
-    cout << "ProcessorStrategy constructor." << endl;
+    cerr << "ProcessorStrategy constructor." << endl;
 }
 
 Output ProcessorStrategy::process(IO input) {
-    cout << "ProcessorStrategy process function." << endl;
+    cerr << "ProcessorStrategy process function." << endl;
     return Output();
 }
 
 ShiftStrategy::ShiftStrategy() {
-    cout << "ShiftStrategy constructor." << endl;
+    cerr << "ShiftStrategy constructor." << endl;
 }
 
 // TODO: utility methods, move them to their own class or namespace
 void print(string msg) {
-    cout << msg << endl;
+    cerr << msg << endl;
 }
 
 void print_vector(vector<string>& v, string msg) {
     for(auto& s : v) {
-        cout << s << ", ";
+        cerr << s << ", ";
     }
-    cout << endl;
+    cerr << endl;
 }
 
 void print_vector_of_vectors(vector< vector<string> >& vv, string msg) {
     print("Printing vector of vectors: ");
     print("size: " + to_string(vv.size()));
-    cout << msg << ':' << endl;
+    cerr << msg << ':' << endl;
     for(auto& v : vv) {
         print_vector(v, "");
     }
@@ -45,7 +45,7 @@ void print_vector_of_vectors(vector< vector<string> >& vv, string msg) {
 // ^^^ utility methods, move them to their own class or namespace ^^^
 
 Output ShiftStrategy::process(IO input) {
-    cout << "ShiftStrategy process function." << endl;
+    cerr << "ShiftStrategy process function." << endl;
     vector<vector <string> > string_lines = input.vector_string_lines();
     vector<vector <string> > duplicated_string_lines(string_lines.size());
     int i = 0;
@@ -104,14 +104,14 @@ Output ShiftStrategy::process(IO input) {
 }
 
 ProcessorContext::ProcessorContext() {
-    cout << "ProcessorContext constructor." << endl;
+    cerr << "ProcessorContext constructor." << endl;
 }
 
 ProcessorContext::ProcessorContext(string) {
-    cout << "ProcessorContext 2nd constructor." << endl;
+    cerr << "ProcessorContext 2nd constructor." << endl;
 }
 
 Output ProcessorContext::process_lines() {
-    cout << "ProcessorContext process_lines method." << endl;
+    cerr << "ProcessorContext process_lines method." << endl;
     return Output();
 }

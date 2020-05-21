@@ -4,13 +4,13 @@ using namespace std;
 
 // deprecated
 Line::Line(string string_line) {
-    cout << "Constructing line." << endl;
+    cerr << "Constructing line." << endl;
     original_string_ = string_line;
 }
 
 // use this cosntructor, to ensure private fields are filled.
 Line::Line(string string_line, vector<string> object) {
-    cout << "Constructing2 line." << endl;
+    cerr << "Constructing2 line." << endl;
     original_string_ = string_line;
     object_ = object;
 }
@@ -27,7 +27,7 @@ void split(const string &s, char delim, Out result) {
 }
 
 vector<string> Line::convert_to_vector(string string_line) {
-    cout << "Converting string to vector." << endl;
+    cerr << "Converting string to vector." << endl;
     vector<string> v;
     char delim = ' ';
     split(string_line, delim, back_inserter(v));
@@ -35,7 +35,7 @@ vector<string> Line::convert_to_vector(string string_line) {
 }
 
 string Line::convert_to_string(vector<string> v, string delim) {
-    cout << "Converting vector to string" << endl;
+    cerr << "Converting vector to string" << endl;
     string output = "";
     for(auto& word : v) {
         output += word;
@@ -47,12 +47,12 @@ string Line::convert_to_string(vector<string> v, string delim) {
 }
 
 void Line::display() {
-    cout << "Line displaying stuff." << endl;
+    cerr << "Line displaying stuff." << endl;
     // TODO: impl different displays, original_string or vector display
-    cout << "string -----> " << original_string_ << endl;
-    cout << "vector -----> {" << flush;
+    cerr << "string -----> " << original_string_ << endl;
+    cerr << "vector -----> {" << flush;
     for (auto& word : object_) {
-        cout << word << ',' << flush;
+        cerr << word << ',' << flush;
     }
-    cout << '}' << endl;
+    cerr << '}' << endl;
 }
