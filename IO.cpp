@@ -79,7 +79,7 @@ bool leer_ascendencia() {
 }
 
 // pregunta que lineas borrar
-void Input::borrar_lineas() {
+void IO::borrar_lineas(vector<Line>& lines) {
     string lineas_a_borrar;
     cout << "Lineas a borrar seaparadas con commas (e.g. 1,2,3): ";
     cin >> lineas_a_borrar;
@@ -92,13 +92,20 @@ void Input::borrar_lineas() {
     for(auto& num_string : v_lineas_a_borrar)
         s_lineas_a_borrar.insert(stoi(num_string));
 
-    for(int i = 0; i < lines_.size(); i++) {
+    for(int i = 0; i < lines.size(); i++) {
         if(s_lineas_a_borrar.find(i+1) == s_lineas_a_borrar.end()) {
-            new_lines.push_back(lines_[i]);
+            new_lines.push_back(lines[i]);
         }
     }
 
-    lines_ = new_lines;
+    lines = new_lines;
+}
+
+void IO::display_numbered_lines(vector<Line> lines) {
+    int i = 1;
+    for(auto& line : lines) {
+        cout << to_string(i++) << " " << line.original_string() << endl;
+    }
 }
 
 void Input::filtrar_stop_words(){
@@ -119,21 +126,14 @@ void Input::pedir_datos() {
     cerr << "Pidiendo datos a usuario." << endl;
     lines_ = leer_lineas();
     cerr << "Lineas leidas:" << endl;
-    display_numbered_lines();
-    borrar_lineas();
-    display_numbered_lines(); // new lines after deleting
+    display_numbered_lines(lines_);
+    borrar_lineas(lines_);
+    display_numbered_lines(lines_); // new lines after deleting
     leer_stops(stop_words_);
     is_ascendente_ = leer_ascendencia();
     filtrar_stop_words();
     cerr << "Lineas filtradas:" << endl;
     display_datos();
-}
-
-void Input::display_numbered_lines() {
-    int i = 1;
-    for(auto& line : lines_) {
-        cout << to_string(i++) << " " << line.original_string() << endl;
-    }
 }
 
 Output::Output() {
@@ -167,10 +167,12 @@ void reverse_vector(vector<Line>& lines) {
 
 // TODO: figure out if we should just modify private variable and return void instead.
 void Output::alter_lines() {
-    cerr << "Sorteando datos del output." << endl;
+    cerr << "Alterando datos del output." << endl;
     modified_lines_ = lines_;
     sort(modified_lines_.begin(), modified_lines_.end(), less_than_line());
     if(!is_ascendente()) reverse_vector(modified_lines_);
+    display_numbered_lines(modified_lines_);
+    borrar_lineas(modified_lines_);
 }
 
 // Displays modified lines

@@ -26,7 +26,9 @@ public:
     void add_line(Line);
     vector<vector <string> > vector_string_lines();
     // each child may have custom impl
+    void borrar_lineas(vector<Line>&);
     void display_datos();
+    void display_numbered_lines(vector<Line>);
 };
 
 class Input : public IO {
@@ -36,8 +38,6 @@ public:
     Input();
     void pedir_datos();
     void filtrar_stop_words();
-    void borrar_lineas();
-    void display_numbered_lines();
 };
 
 class Output : public IO {

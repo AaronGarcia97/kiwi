@@ -1,4 +1,5 @@
 KWIC2_input1.txt
 3,5
 KWIC2_stop1.txt
-y
+n
+25
